@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer ></script>
+    <title>Document</title>
+</head>
+<body class="center" data-button-id="show-hide" data-controlled-id="re-password">
+    <form autocomplete="off" action="/signup" class="log-in-form center" method="post" enctype="multipart/form-data" >
+        <div class="from-wrapper">
+            <div class="inputs-container">
+                <div class="input-container email-container">
+                    <label for="email">Email :</label>
+                    <input type="email" 
+                        autocomplete="off"
+                        th:value="${user.email ?: ''}"
+                        name="email" 
+                        id="email" 
+                        placeholder="example@example.com"
+                        th:attr="class=${att=='email'?'input-error':''}"
+                    >
+                    <span 
+                        th:if="${att=='email'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+                <div class="input-container username-container">
+                    <label for="name">Name :</label>
+                    <input type="text" 
+                        th:value="${user.name ?: ''}"
+                        name="name" 
+                        id="name" 
+                        placeholder="username"
+                        th:attr="class=${att=='name'?'input-error':''}"
+                    >
+                    <span 
+                        th:if="${att=='name'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+                <div class="input-container password-container">
+                    <label for="password">password :</label>
+                    <input 
+                        autocomplete="new-password"
+                        th:value="${user.hashedPassword ?: ''}"
+                        type="password" 
+                        name="hashedPassword" 
+                        id="password" 
+                        placeholder="password"
+                        th:attr="class=${att=='password'?'input-error':''}"
+                    >
+                    <span 
+                        th:if="${att=='password'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+                <div class="input-container re-password-container">
+                    <label for="re-password">confirm your password :</label>
+                    <div class="input-wrapper re-password-wrapper">
+                        <button id="show-hide">
+                            <img src="./icons/hide.png" alt="">
+                        </button>
+                        <input 
+                            th:value="${user.rePassword ?: ''}"
+                            name="rePassword"
+                            type="password" 
+                            id="re-password" 
+                            placeholder="password"
+                            th:attr="class=${att=='re-password'?'input-error':''}"
+                        >
+                    </div>
+                    <span 
+                        th:if="${att=='re-password'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+                <div class="input-container" >
+                    <label for="gender">gender :</label>
+                    <div class="flex">
+                        <input 
+                            type="radio" 
+                            name="gender" 
+                            id="male" 
+                            value="male" 
+                            checked="true"
+                        >
+                        <label for="male">male</label>
+                        <input 
+                            type="radio" 
+                            name="gender" 
+                            id="female" 
+                            value="female" 
+                        >
+                        <label for="female">female</label>
+                    </div>
+                </div>
+                <div class="input-container picture-container">
+                    <label for="picture">profile picture :</label>
+                    <input type="file" name="picture" id="picture">
+                </div>
+            </div>
+            <button type="submit" class="btn">
+                sign up
+            </button>
+        </div>
+    </form>
+</body>
+</html>

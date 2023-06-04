@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HOME</h1>
+    <p th:text=" ${name} "></p>
+    <img th:src="${param.url ?: ''}" alt="" id="img">
+    <form action="/logout" method="post">
+        <button>log out</button>
+    </form>
+</body>
+</html>

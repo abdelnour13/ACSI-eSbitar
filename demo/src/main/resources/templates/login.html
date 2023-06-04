@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer ></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js" defer ></script>
+    <script src="js/google_login.js" defer ></script>
+    <title>Document</title>
+</head>
+<body class="center" data-button-id="show-hide" data-controlled-id="password" >
+    <form autocomplete="off" action="/login" class="log-in-form center" method="post" enctype="multipart/form-data" >
+        <div class="from-wrapper">
+            <div class="inputs-container">
+                <div class="input-container email-container">
+                    <label for="email">Email :</label>
+                    <input 
+                        autocomplete="off"
+                        th:value="${user.email ?: ''}"
+                        type="text" 
+                        name="email" 
+                        id="email" 
+                        placeholder="example@example.com"
+                        th:attr="class=${type=='NOT_ACTIVE'?'input-error':''}"
+                    >
+                    <span 
+                        th:if="${type=='NOT_ACTIVE'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+                <div class="input-container password-container">
+                    <label for="password">password :</label>
+                    <div class="input-wrapper password-wrapper">
+                        <button id="show-hide">
+                            <img src="./icons/hide.png" alt="">
+                        </button>
+                        <input 
+                            autocomplete="off"
+                            type="password" 
+                            name="hashedPassword" 
+                            id="password" 
+                            placeholder="password"
+                            th:attr="class=${type=='WRNG_CRED'?'input-error':''}"
+                        >
+                    </div>
+                    <span 
+                        th:if="${type=='WRNG_CRED'}" 
+                        class="error-message"
+                        th:text="${msg}"
+                    ></span>
+                </div>
+            </div>
+            <button type="submit" class="btn">
+                log in
+            </button>
+            <div id="buttonDiv" class="center" ></div>
+        </div>
+    </form>
+</body>
+</html>
